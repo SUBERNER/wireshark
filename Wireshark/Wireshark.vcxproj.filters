@@ -24,6 +24,9 @@
     <ClCompile Include="json.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ICMP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">

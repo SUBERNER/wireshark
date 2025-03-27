@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ICMP.cpp" />
     <ClCompile Include="json.hpp" />
     <ClCompile Include="Wireshark.cpp" />
   </ItemGroup>
