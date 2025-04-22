@@ -14,7 +14,7 @@ private:
     json Convert() const override {
         json base = Filter::Convert();
         base["dhcpType"] = dhcpType;
-        base["dhcpCode"] = dhcpTypeCode;
+        base["dhcpCode"] = dhcpCode;
         base["packetRate"] = packetRate;
         base["payloadSize"] = payloadSize;
         base["isBroadcast"] = isBroadcast;

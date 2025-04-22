@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\tompk\source\repos\Wireshark\x64\Debug\Wireshark.exe</FullPath>
+      <FullPath>C:\Users\tompk\Documents\GitHub\wireshark\x64\Debug\Wireshark.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

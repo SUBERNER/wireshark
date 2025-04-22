@@ -21,16 +21,25 @@
     <ClCompile Include="Wireshark.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="json.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ICMP.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ARP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DHCP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DNS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="json.hpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

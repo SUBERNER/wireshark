@@ -1,0 +1,13 @@
+{
+    "destinationIP": "9.9.9.9",
+    "destinationMAC": "127.20.20.127",
+    "enabled": false,
+    "icmpCode": 1,
+    "icmpType": 1,
+    "isBroadcast": true,
+    "name": "ICMP BIGGER TEST",
+    "packetRate": 1,
+    "payloadSize": 1,
+    "sourceIP": "127.0.0.1",
+    "sourceMAC": "127.5.5.127"
+}
