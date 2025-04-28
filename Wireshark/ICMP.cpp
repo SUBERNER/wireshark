@@ -1,14 +1,15 @@
 #include "Filter.h"
-
+#include <filesystem>
+using namespace std;
+namespace fs = std::filesystem;
 
 class ICMPFilter : public Filter {
 private:
-
-    int packetRate;  // maximum allowed ping/packets requests per second
-    uint16_t payloadSize; //size of the payload
-    int icmpType;  // ICMP message type
-    int icmpCode;  // ICMP message code
-    bool isBroadcast; // if destination is a boradcast address
+    int packetRate;        // allowed ping requests per second
+    uint16_t payloadSize;  // payload size
+    int icmpType;          // ICMP type
+    int icmpCode;          // ICMP code
+    bool isBroadcast;      // destination is broadcast?
 
     // override Convert
     json Convert() const override {
@@ -33,31 +34,38 @@ private:
             j.at("icmpType").get<int>(),
             j.at("icmpCode").get<int>(),
             j.at("packetRate").get<int>(),
-            j.at("isBroadcast").get<bool>(),
-            j.at("payloadSize").get<uint16_t>()
+            j.at("payloadSize").get<uint16_t>(),
+            j.at("isBroadcast").get<bool>()
         );
     }
 
 public:
-    // Constructor
     ICMPFilter(std::string n, bool e, std::string sp, std::string dp, std::string sm, std::string dm, int t, int c, int pr, uint16_t ps, bool b) : Filter(n, e, sp, dp, sm, dm), icmpType(t), icmpCode(c), packetRate(pr), payloadSize(ps), isBroadcast(b) {}
 
-    // Load filter from json
+    // load filter from JSON
     static ICMPFilter Load(ICMPFilter& filter) {
-        std::ifstream file(filter.GetName() + ".json");
-        if (file.is_open()) {
-            json j;
-            file >> j;
-            file.close();
-            std::cout << "Loaded: " << filter.GetName() + ".json" << std::endl;
-            return DeConvert(j);
-        }
-        else {
+        fs::path dir = fs::current_path() / "filters";
+        fs::path filePath = dir / (filter.GetName() + ".json");
+        std::ifstream file(filePath);
+        if (!file.is_open()) {
             std::cerr << "Error: Unable to open file for loading." << std::endl;
+            return filter;
         }
+        json j;
+        try {
+            file >> j;
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Error: Invalid JSON format in " << filePath.string() << std::endl;
+            file.close();
+            return filter;
+        }
+        file.close();
+        std::cout << "Loaded: " << filePath.string() << std::endl;
+        return DeConvert(j);
     }
 
-    //SETTER and GETTERS
+    // SETTERS and GETTERS
     void SetICMPType(int type) { icmpType = type; }
     int GetICMPType() const { return icmpType; }
 

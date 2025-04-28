@@ -1,0 +1,13 @@
+{
+    "destinationIP": "0.0.0.0",
+    "destinationMAC": "0.0.0.0",
+    "enabled": false,
+    "hardwareSize": 6,
+    "hardwareType": 1,
+    "name": "ARP TESTING",
+    "opcode": 1,
+    "protocolSize": 1,
+    "protocolType": 10,
+    "sourceIP": "0.0.0.0",
+    "sourceMAC": "0.0.0.0"
+}

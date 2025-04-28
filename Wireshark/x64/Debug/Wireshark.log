@@ -1,2 +1,19 @@
 ﻿  Wireshark.cpp
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\Filter.h(87,38): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Wireshark.cpp')
+  
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\ICMP.cpp(58,38): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Wireshark.cpp')
+  
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\ARP.cpp(57,40): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Wireshark.cpp')
+  
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\DHCP.cpp(58,38): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Wireshark.cpp')
+  
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\DNS.cpp(55,38): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'Wireshark.cpp')
+  
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\Wireshark.cpp(80,38): warning C4101: 'e': unreferenced local variable
+C:\Users\tompk\Documents\GitHub\wireshark\Wireshark\Wireshark.cpp(147,34): warning C4101: 'e': unreferenced local variable
   Wireshark.vcxproj -> C:\Users\tompk\Documents\GitHub\wireshark\x64\Debug\Wireshark.exe

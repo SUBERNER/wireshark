@@ -1,13 +1,16 @@
 #include "Filter.h"
+#include <filesystem>
+using namespace std;
+namespace fs = std::filesystem;
 
 class DNSFilter : public Filter {
 private:
-    int queryRate;      // Maximum allowed DNS queries per second
-    std::string domain; // Domain name filter (e.g., block certain domains)
-    int dnsType;        // DNS query type (A, AAAA, MX, etc.)
-    bool isRecursive;   // Whether the DNS request is recursive
+    int queryRate;       // DNS queries per second
+    std::string domain;  // Domain name filter
+    int dnsType;         // DNS query type
+    bool isRecursive;    // Recursive query?
 
-    // Override Convert method for serialization
+    // Override Convert for serialization
     json Convert() const override {
         json base = Filter::Convert();
         base["dnsType"] = dnsType;
@@ -17,7 +20,7 @@ private:
         return base;
     }
 
-    // Override DeConvert method for deserialization
+    // Override DeConvert
     static DNSFilter DeConvert(const json& j) {
         return DNSFilter(
             j.at("name").get<std::string>(),
@@ -34,22 +37,29 @@ private:
     }
 
 public:
-    // Constructor
-    DNSFilter(std::string n, bool e, std::string sp, std::string dp, std::string sm, std::string dm, int type, int rate, std::string d, bool recursive) 
-        : Filter(n, e, sp, dp, sm, dm), dnsType(type), queryRate(rate), domain(d), isRecursive(recursive) {}
+    DNSFilter(std::string n, bool e, std::string sp, std::string dp, std::string sm, std::string dm, int type, int rate, std::string d, bool recursive): Filter(n, e, sp, dp, sm, dm), dnsType(type), queryRate(rate), domain(d), isRecursive(recursive) {}
 
-    // Load filter from JSON
+    // load filter from JSON
     static DNSFilter Load(DNSFilter& filter) {
-        std::ifstream file(filter.GetName() + ".json");
-        if (file.is_open()) {
-            json j;
-            file >> j;
-            file.close();
-            std::cout << "Loaded: " << filter.GetName() + ".json" << std::endl;
-            return DeConvert(j);
-        } else {
+        fs::path dir = fs::current_path() / "filters";
+        fs::path filePath = dir / (filter.GetName() + ".json");
+        std::ifstream file(filePath);
+        if (!file.is_open()) {
             std::cerr << "Error: Unable to open file for loading." << std::endl;
+            return filter;
         }
+        json j;
+        try {
+            file >> j;
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Error: Invalid JSON format in " << filePath.string() << std::endl;
+            file.close();
+            return filter;
+        }
+        file.close();
+        std::cout << "Loaded: " << filePath.string() << std::endl;
+        return DeConvert(j);
     }
 
     // GETTERS & SETTERS
